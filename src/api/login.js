@@ -8,6 +8,7 @@ export function login(username, password, code, uuid) {
     code,
     uuid
   }
+  console.log('向后请求登入')
   return request({
     url: '/login',
     method: 'post',

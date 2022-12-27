@@ -5,10 +5,10 @@
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
+        background-color=#304156
+        text-color=#bfcbd9
         :unique-opened="true"
-        :active-text-color="variables.menuActiveText"
+        active-text-color=#409EFF
         :collapse-transition="false"
         mode="vertical"
       >
@@ -25,6 +25,11 @@ import SidebarItem from './SidebarItem'
 // import variables from '@/assets/styles/variables.scss' //???
 
 export default {
+  created() {
+    console.log(mapGetters([
+      'permission_routes'
+    ]))
+  },
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
@@ -43,9 +48,9 @@ export default {
     showLogo() {
       return this.$store.state.settings.sidebarLogo
     },
-    variables() {
+    /*variables() {
       return variables
-    },
+    },*/
     isCollapse() {
       return !this.sidebar.opened
     }

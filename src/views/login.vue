@@ -51,7 +51,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2018-2019 ruoyi.vip All Rights Reserved.</span>
+      <span>Copyright © 2022-2022 aaa All Rights Reserved.</span>
     </div>
   </div>
 </template>
@@ -90,6 +90,7 @@ export default {
   watch: {
     $route: {
       handler: function(route) {
+        console.log('进入login.vue的监听器')
         if(route.query.pengToken){
           console.log("OAuth登录,跳转至首页...");
           setToken(route.query.pengToken)
@@ -110,7 +111,7 @@ export default {
       window.open(e)
     },
     getCode() {
-      getCodeImg().then(res => {
+      getCodeImg().then(res => {  //会向后端发出请求
         this.codeUrl = "data:image/gif;base64," + res.img;
         this.loginForm.uuid = res.uuid;
       });
@@ -126,6 +127,8 @@ export default {
       };
     },
     handleLogin() {
+      console.log('进入登入')
+      const that = this
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
@@ -138,9 +141,12 @@ export default {
             Cookies.remove("password");
             Cookies.remove('rememberMe');
           }
-          this.$store
-            .dispatch("Login", this.loginForm)
+          //for-test
+          // console.log(Cookies)
+
+          this.$store.dispatch("Login", this.loginForm)  //调取store里的login方法
             .then(() => {
+              console.log('进行跳转，redirect：' + this.redirect)
               this.$router.push({ path: this.redirect || "/" });
             })
             .catch(() => {

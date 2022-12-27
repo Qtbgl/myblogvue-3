@@ -31,6 +31,7 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
+      console.log('进入登入工具类')
       const username = userInfo.username.trim()
       const password = userInfo.password
       const code = userInfo.code
@@ -39,6 +40,7 @@ const user = {
       return new Promise((resolve, reject) => {
         login(username, password, code, uuid).then(res => {
           setToken(res.token)
+          // setToken("hey world")
           commit('SET_TOKEN', res.token)
           resolve()
         }).catch(error => {

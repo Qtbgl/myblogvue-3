@@ -14,12 +14,14 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   config => {
+    console.log('进入request拦截器，Token：' + getToken() + '，VUE_APP_BASE_API：' + process.env.VUE_APP_BASE_API)
     if (getToken()) {
       config.headers['Peng-Token'] =  getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     return config
   },
   error => {
+    console.log('请求拦截')
     console.log(error)
     Promise.reject(error)
   }
@@ -27,6 +29,7 @@ service.interceptors.request.use(
 
 // 响应拦截器
 service.interceptors.response.use(res => {
+    console.log("进入response拦截器")
     const code = res.data.code
     if (code === 401) {
       MessageBox.confirm(
@@ -58,6 +61,7 @@ service.interceptors.response.use(res => {
       type: 'error',
       duration: 5 * 1000
     })
+      console.log("响应拦截")
     return Promise.reject(error)
   }
 )

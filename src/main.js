@@ -23,7 +23,7 @@ import { getConfigKey } from "@/api/system/config";
 import { parseTime, resetForm, addDateRange, selectDictLabel, download, handleTree } from "@/utils/ruoyi";
 import Pagination from "@/components/Pagination";
 
-// 全局方法挂载
+// 鍏ㄥ眬鏂规硶鎸傝浇
 Vue.prototype.getDicts = getDicts
 Vue.prototype.getConfigKey = getConfigKey
 Vue.prototype.parseTime = parseTime
@@ -46,7 +46,7 @@ Vue.prototype.msgInfo = function (msg) {
   this.$message.info(msg);
 }
 
-// 全局组件挂载
+// 鍏ㄥ眬缁勪欢鎸傝浇
 Vue.component('Pagination', Pagination)
 
 Vue.use(permission)
